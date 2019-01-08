@@ -14,7 +14,7 @@ script:
 - ansible-galaxy install -p ./ -r .requirements.yml
 - vagrant box add JoergFiedler/FreeBSD-11.2 --provider aws
 - vagrant up nginx-proxy --provider aws
-- host=$(vagrant ssh-config |grep HostName |awk '{print $2}')
+- host=$(vagrant ssh-config nginx-proxy |grep HostName |awk '{print $2}')
 - test $(curl -w %{http_code} -s -H "Host:www.freebsd.org" -o /dev/null http://${host})
   == "200"
 after_script:
