@@ -65,7 +65,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     aws.keypair_name = 'ec2-user'
     aws.region = 'eu-west-1'
     aws.secret_access_key = ENV['AWS_SECRET_ACCESS_KEY']
-    aws.security_groups = ['sg-1d29f478']
+    aws.security_groups = ['sg-088d1213681b2d080']
     aws.ssh_host_attribute = :dns_name
     aws.subnet_id = 'subnet-cf3beaaa'
     aws.terminate_on_shutdown = true
