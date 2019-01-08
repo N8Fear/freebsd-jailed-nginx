@@ -155,7 +155,7 @@ Example Playbook
 
 Proxy host, that forwards traffic to other jails/hosts.
 
-    - { role: JoergFiedler.freebsd-jailed-nginx,¬
+    - role: JoergFiedler.freebsd-jailed-nginx,¬
         tags: ['_proxy'],
         nginx_servers: [
           {

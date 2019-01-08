@@ -5,12 +5,15 @@ host_zfs_www_dir: '{{ host_srv_dir }}/www'
 
 nginx_letsencrypt_domains_file: '/usr/local/etc/acme/domains.txt'
 nginx_letsencrypt_enabled: false
+nginx_servers: []
 nginx_syslogd_server: '{{ syslogd_server | default("localhost") }}'
 nginx_tarsnap_enabled: '{{ tarsnap_enabled }}'
 
 nginx_pf_redirect: false
 nginx_pf_rdrs:
-  - ports: ['http', 'https']
+  - ports:
+      - 'http'
+      - 'https'
     ext_ip: '{{ host_net_ext_ip }}'
     ext_if: '{{ host_net_ext_if }}'
 nginx_servers_defaults: {
@@ -20,6 +23,7 @@ nginx_servers_defaults: {
   force_www: false,
   name: 'localhost',
   php_fpm_enabled: false,
+  basic_auth_enabled: false,
   https: { enabled: false, letsencrypt_enabled: false},
   sftp_enabled: false,
   sftp: {
@@ -31,3 +35,27 @@ nginx_servers_defaults: {
   },
   webroot: '{{ server_webroot }}'
 }
+
+nginx_php_fpm_pkgs:
+  - php56
+  - php56-ctype
+  - php56-curl
+  - php56-dom
+  - php56-filter
+  - php56-gd
+  - php56-iconv
+  - php56-json
+  - php56-mbstring
+  - php56-mcrypt
+  - php56-mysql
+  - php56-mysqli
+  - php56-opcache
+  - php56-openssl
+  - php56-tidy
+  - php56-tokenizer
+  - php56-simplexml
+  - php56-session
+  - php56-sqlite3
+  - php56-zip
+  - php56-zlib
+  - php56-xml
