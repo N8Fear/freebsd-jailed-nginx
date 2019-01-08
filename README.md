@@ -155,22 +155,22 @@ Example Playbook
 
 Proxy host, that forwards traffic to other jails/hosts.
 
-    - role: JoergFiedler.freebsd-jailed-nginx,¬
-        tags: ['_proxy'],
-        nginx_servers: [
-          {
-            name: 'example.com',
-            aliases: 'www.example.com',
-            proxy: { host: '10.1.0.200' }
-          },
-          {
-            name: 'external.example.com',
-            proxy: { host: 'external.example.com' }
-          }
-        ],
-        jail_name: 'proxy',
-        jail_net_ip: '10.1.0.100' }
-      }
+    - include_role:
+            name: 'JoergFiedler.freebsd-jailed-nginx'
+          vars:
+            nginx_pf_redirect: true
+            nginx_servers:
+              - name: 'freebsd'
+                proxy:
+                  host: 'www.freebsd.org'
+                  scheme: 'https'
+                  port: 443
+                  local: no
+            jail_net_ip: '10.1.0.10'
+            jail_name: 'nginx'
+            jail_freebsd_release: '11.2-RELEASE'
+            jail_build_server_enabled: yes
+            jail_build_server_url: 'http://vastland.moumantai.de/FreeBSD/packages/freebsd-11_2_x64-branches_2018Q4'
 
 Configure nginx to serve as SSL terminating proxy.
 
