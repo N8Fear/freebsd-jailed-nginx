@@ -37,3 +37,9 @@
   notify:
     - Reload pf
 
+- name: Reload pf to allow proxy to reach external origins
+  service:
+    name: 'pf'
+    state: reloaded
+  when: server.proxy is defined and not server.proxy.local
+

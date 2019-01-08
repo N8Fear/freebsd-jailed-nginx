@@ -12,7 +12,9 @@
         nginx_servers:
           - name: 'freebsd'
             proxy:
-              host: 'freebsd.org'
+              host: 'www.freebsd.org'
+              scheme: 'https'
+              port: 443
               local: no
         jail_net_ip: '10.1.0.10'
         jail_name: 'nginx'
