@@ -10,9 +10,12 @@
     src: '{{ item.src }}'
     dest: '{{ jail_home.stdout }}/usr/local/etc/nginx/ssl/{{ server.name }}/{{ item.dst }}'
   loop:
-    - { src: 'localhost-key.pem', dst: 'key.pem'}
-    - { src: 'localhost-certbundle.pem', dst: 'fullchain.pem'}
-    - { src: 'localhost-dhparam.pem', dst: 'dhparam.pem'}
+    - src: '{{ server.https.key_file }}'
+      dst: 'key.pem'
+    - src: '{{ server.https.certbundle_file }}'
+      dst: 'fullchain.pem'
+    - src: '{{ server.https.dhparam_file }}'
+      dst: 'dhparam.pem'
 
 - name: Copy DH params
   copy:

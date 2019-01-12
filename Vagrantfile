@@ -6,9 +6,9 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.synced_folder '.', '/vagrant', disabled: true
   config.ssh.insert_key = false
 
-  config.vm.define 'nginx' do |host|
+  config.vm.define 'nginx-fpm' do |host|
     host.vm.provision 'ansible', type: 'ansible' do |ansible|
-      ansible.playbook = './.playbook.yml'
+      ansible.playbook = './.playbook-fpm.yml'
     end
   end
 
@@ -30,6 +30,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     global.vm.network 'private_network', type: 'dhcp', auto_config: false
 
     global.vm.network 'forwarded_port', guest: 80, host: 10080
+    global.vm.network 'forwarded_port', guest: 443, host: 10443
+    global.vm.network 'forwarded_port', guest: 10022, host: 10022
 
     vb.gui = false
     vb.memory = 4096
