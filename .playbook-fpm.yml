@@ -18,7 +18,7 @@
             php_fpm_enabled: yes
             sftp_enabled: yes
             sftp:
-              authorized_keys: '/Users/john/.vagrant.d/insecure_private_key.pub'
+              authorized_keys: '~/.vagrant.d/insecure_private_key.pub'
         jail_freebsd_release: '11.2-RELEASE'
         jail_build_server_enabled: yes
         jail_build_server_url: 'http://vastland.moumantai.de/FreeBSD/packages/freebsd-11_2_x64-branches_2018Q4'
