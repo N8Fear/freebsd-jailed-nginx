@@ -1,6 +1,5 @@
 {{ ansible_managed | comment }}
 
-{% set isDefault = server.default|default(false) %}
 {% set isHttps = server.https.enabled %}
 {% set useLetsEncrypt = isHttps and server.https.letsencrypt_enabled %}
 {% set scheme = 'https' if isHttps else 'http' %}
