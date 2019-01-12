@@ -16,7 +16,7 @@ script:
 - vagrant up nginx-fpm --provider aws
 - host=$(vagrant ssh-config nginx-fpm |grep HostName |awk '{print $2}')
 - test $(curl -w %{http_code} https://${host} -o /dev/null --insecure) == "200"
-- test $(sftp -P 10022 -i ~/.vagrant.d/insecure_private_key sftp_default@${host} <<< $'ls -l' |grep webroot |wc -l) == "1"
+- test $(sftp -P 10022 -o StrictHostKeyChecking=no -i ~/.vagrant.d/insecure_private_key sftp_default@${host} <<< $'ls -l' |grep webroot |wc -l) == "1"
 - vagrant destroy -f
 - vagrant up nginx-proxy --provider aws
 - host=$(vagrant ssh-config nginx-proxy |grep HostName |awk '{print $2}')
