@@ -20,16 +20,16 @@
     dest: '{{ jail_home.stdout }}/usr/local/etc/nginx/{{ server_name }}-user.htpasswd'
   when: server.basic_auth_enabled
 
-- include: 'nginx-server-https.yml'
+- include_tasks: 'nginx-server-https.yml'
   when: server.https.enabled
 
-- include: 'nginx-server-webroot.yml'
+- include_tasks: 'nginx-server-webroot.yml'
   when: server.proxy is not defined
 
-- include: 'nginx-server-sftp.yml'
+- include_tasks: 'nginx-server-sftp.yml'
   when: server.sftp_enabled
 
-- include: 'nginx-server-proxy.yml'
+- include_tasks: 'nginx-server-proxy.yml'
   when: server.proxy is defined
 
 - include: 'nginx-server-php-fpm.yml'

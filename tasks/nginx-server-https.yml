@@ -16,13 +16,6 @@
       dst: 'fullchain.pem'
     - src: '{{ server.https.dhparam_file }}'
       dst: 'dhparam.pem'
-
-- name: Copy DH params
-  copy:
-    src: '{{ item }}'
-    dest: '{{ jail_home.stdout }}/usr/local/etc/nginx/ssl/{{ item }}'
-  loop:
-    - '{{ server.name }}/dhparam.pem'
   notify:
   - Reload jail s nginx
   when: server.https.letsencrypt_enabled and nginx_letsencrypt_enabled | default(false)
