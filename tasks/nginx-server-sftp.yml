@@ -5,7 +5,11 @@
     dest: '{{ jail_home.stdout }}/etc/master.passwd'
     state: present
     regexp: '^{{ server.sftp.user }}:'
-    line: '{{ server.sftp.user }}:*:{{ server.sftp.uuid }}:80::0:0:Remote (sftp) User:{{ server.sftp.home }}:/usr/sbin/nologin'
+    line: >
+      {{ server.sftp.user }}:*:
+      {{ server.sftp.uuid }}:80::0:0:
+      Remote (sftp) User:
+      {{ server.sftp.home }}:/usr/sbin/nologin'
   notify:
     - Reload jails s sshd
     - Update user database
