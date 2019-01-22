@@ -10,9 +10,19 @@
       {{ server.sftp.uuid }}:80::0:0:
       Remote (sftp) User:
       {{ server.sftp.home }}:/usr/sbin/nologin'
+  register: sftp_user
   notify:
     - Reload jails s sshd
-    - Update user database
+
+- name: Update user database
+  command: |
+    pwd_mkdb \
+      -p \
+      -d {{ jail_home.stdout }}/etc \
+      {{ jail_home.stdout }}/etc/master.passwd
+  when: sftp_user.changed
+  tags:
+    - skip_ansible_lint
 
 - name: Copy public half of the key
   copy:
