@@ -1,3 +1,4 @@
+[![Build Status](https://travis-ci.org/JoergFiedler/freebsd-jailed-nginx.svg?branch=master)](https://travis-ci.org/JoergFiedler/freebsd-jailed-nginx)
 freebsd-jailed-nginx
 ====================
 
