@@ -4,6 +4,8 @@
     name: 'nginx'
     state: present
     chroot: '{{ jail_home.stdout }}'
+  register: pkg_result
+  until: pkg_result is succeeded
 
 - name: Copy nginx configuration
   template:

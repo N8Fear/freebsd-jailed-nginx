@@ -6,6 +6,8 @@
     chroot: '{{ jail_home.stdout }}'
   loop:
     - acme-client
+  register: pkg_result
+  until: pkg_result is succeeded
 
 - name: Create SSL key directory
   file:

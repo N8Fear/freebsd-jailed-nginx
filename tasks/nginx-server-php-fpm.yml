@@ -7,6 +7,8 @@
   loop: '{{ nginx_php_fpm_pkgs }}'
   notify:
     - Reload jails s php-fpm
+  register: pkg_result
+  until: pkg_result is succeeded
 
 - name: Enable php-fpm service
   lineinfile:

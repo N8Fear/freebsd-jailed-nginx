@@ -1,6 +1,8 @@
 ---
-- set_fact: server_name={{ nginx_server.name }}
-- set_fact: server={{ nginx_servers_defaults|combine(nginx_server, recursive=True) }}
+- name: Create server specific variables
+  set_fact:
+    server_name: '{{ nginx_server.name }}'
+    server: '{{ nginx_servers_defaults|combine(nginx_server, recursive=True) }}'
 
 - debug:
     var: server

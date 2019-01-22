@@ -25,7 +25,7 @@
     backup: '{{ jail_backup_old_files }}'
     dest: '{{ jail_home.stdout }}{{ nginx_letsencrypt_domains_file }}'
     regexp: '^{{ server.name }}'
-    line: '{{ server.name}} {{ server.aliases }}'
+    line: '{{ server.name }} {{ server.aliases }}'
     state: present
   when: server.https.letsencrypt_enabled and nginx_letsencrypt_enabled | default(false)
 

@@ -6,17 +6,9 @@
     state: present
     regexp: '^{{ server.sftp.user }}:'
     line: '{{ server.sftp.user }}:*:{{ server.sftp.uuid }}:80::0:0:Remote (sftp) User:{{ server.sftp.home }}:/usr/sbin/nologin'
-  register: user
   notify:
     - Reload jails s sshd
-
-- name: Update user database
-  command: |
-    pwd_mkdb \
-      -p \
-      -d {{ jail_home.stdout }}/etc \
-      {{ jail_home.stdout }}/etc/master.passwd
-  when: user.changed
+    - Update user database
 
 - name: Copy public half of the key
   copy:
@@ -60,4 +52,3 @@
     state: present
     regexp: '^sshd_enable='
     line: 'sshd_enable="YES"'
-

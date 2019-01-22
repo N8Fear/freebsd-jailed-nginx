@@ -42,4 +42,3 @@
     name: 'pf'
     state: reloaded
   when: server.proxy is defined and not server.proxy.local
-
