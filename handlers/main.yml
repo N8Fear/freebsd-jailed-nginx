@@ -14,4 +14,3 @@
   command: |
     /usr/local/bin/iocage exec {{ jail_name }} service sshd reload
   when: jail_created is defined and not jail_created is changed
-
